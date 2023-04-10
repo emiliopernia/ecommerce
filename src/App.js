@@ -1,57 +1,61 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+//import components
+import Header from './components/Header'
+import Main from './components/sectionComponents/Main'
+import Footer from './components/Footer'
+import Travel from './components/sectionComponents/Travel'
+import Bags from './components/sectionComponents/Bags'
+import Accesories from './components/sectionComponents/Accesories'
+import Men from './components/sectionComponents/Men'
+import Products from './components/sectionComponents/Products'
+import ItemInfoPage from './components/styledComponent/ItemInfoPage'
+import ShoppingCart from './components/sectionComponents/ShoppingCart'
+import BreadcrumbsContainer from './components/BreadcrumbsContainer'
+
+import Subscribe from './components/sectionComponents/Subscribe'
+import UserPage from './components/sectionComponents/UserPage'
+import Login from './components/sectionComponents/Login'
+import { Routes, Route } from 'react-router-dom'
+import CssBaseline from '@mui/material/CssBaseline'
+import { Box, useMediaQuery, useTheme } from '@mui/material'
+
 
 function App() {
+
+  const url = 'https://fakestoreapi.com/products'
+  //declare responsive breackpoints:
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const tablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  const desk = useMediaQuery(theme.breakpoints.up('md'));
+  const responsive = {
+    'mobile': mobile,
+    'tablet': tablet,
+    'desk': desk
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <Box id='html' sx={{width:'100%'}}>
+      <CssBaseline />
+      <Header responsive={responsive} />
+      <BreadcrumbsContainer/>
+      <Routes>
+        <Route path='/' element={<Main responsive={responsive} />} />
+        <Route path='/home' element={<Main responsive={responsive} />} />
+        <Route path='/travel' element={<Travel />} />
+        <Route path='/bags' element={<Bags />} />
+        <Route path='/accesories' element={<Accesories/>}/>
+        <Route path='/men' element={<Men/>}/>
+        <Route path='/products' element={<Products url={url}/>}/>
+        <Route path={`/products/:id`} element={<ItemInfoPage responsive={responsive} url={url}/>}/>
+        <Route path={`/cart`} element={<ShoppingCart/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/subscribe' element={<Subscribe/>}/>
+        <Route path='/user' element={<UserPage/>}/>
+        
+        
+      </Routes>
+      <Footer responsive={responsive} />
+    </Box>
   );
 }
 

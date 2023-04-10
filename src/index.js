@@ -1,23 +1,66 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
+import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import './index.css';
+import { ThemeProvider, createTheme, Box } from '@mui/material';
+import { orange } from '@mui/material/colors';
+import { BrowserRouter } from 'react-router-dom';
+import { configureStore } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
 
-const container = document.getElementById('root');
-const root = createRoot(container);
+import itemsReducer from './features/items';
+import cartReducer from './features/cart';
+import userReducer from './features/user';
 
-root.render(
-  <React.StrictMode>
+const store = configureStore({
+  reducer: {
+    items: itemsReducer,
+    cart: cartReducer,
+    user: userReducer,
+  },
+});
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#CCC',
+    },
+    myCustomColor: {
+      main: orange[400],
+      light: orange[100],
+      dark: orange[800],
+    },
+  },
+  components: {
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          padding: 0,
+          textAlign: 'center',
+        },
+      },
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          textAlign: 'center',
+        },
+      },
+    },
+  },
+});
+
+ReactDOM.render(
+  <ThemeProvider theme={theme}>
     <Provider store={store}>
-      <App />
+      <Box sx={{ display: 'flex', width: '100%', alignContent: 'center' }}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Box>
     </Provider>
-  </React.StrictMode>
+  </ThemeProvider>,
+  document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
