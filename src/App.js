@@ -40,6 +40,7 @@ function App() {
       <BreadcrumbsContainer/>
       <Routes>
         <Route path='/' element={<Main responsive={responsive} />} />
+        <Route path='/ecommerce' element={<Main responsive={responsive} />} />
         <Route path='/home' element={<Main responsive={responsive} />} />
         <Route path='/travel' element={<Travel />} />
         <Route path='/bags' element={<Bags />} />
