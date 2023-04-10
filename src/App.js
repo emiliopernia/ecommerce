@@ -10,7 +10,7 @@ import Products from './components/sectionComponents/Products'
 import ItemInfoPage from './components/styledComponent/ItemInfoPage'
 import ShoppingCart from './components/sectionComponents/ShoppingCart'
 import BreadcrumbsContainer from './components/BreadcrumbsContainer'
-
+import { Navigate } from 'react-router-dom';
 import Subscribe from './components/sectionComponents/Subscribe'
 import UserPage from './components/sectionComponents/UserPage'
 import Login from './components/sectionComponents/Login'
@@ -40,7 +40,6 @@ function App() {
       <BreadcrumbsContainer/>
       <Routes>
         <Route path='/' element={<Main responsive={responsive} />} />
-        <Route path='/ecommerce' element={<Main responsive={responsive} />} />
         <Route path='/home' element={<Main responsive={responsive} />} />
         <Route path='/travel' element={<Travel />} />
         <Route path='/bags' element={<Bags />} />
@@ -52,8 +51,7 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/subscribe' element={<Subscribe/>}/>
         <Route path='/user' element={<UserPage/>}/>
-        
-        
+        <Route path='*' element={<Navigate to="/" />} />
       </Routes>
       <Footer responsive={responsive} />
     </Box>
