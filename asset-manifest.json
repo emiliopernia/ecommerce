@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.js": "/ecommerce/static/js/main.26708a96.js",
+    "static/js/787.dcc73137.chunk.js": "/ecommerce/static/js/787.dcc73137.chunk.js",
+    "static/media/rebajas.mp4": "/ecommerce/static/media/rebajas.4918311b35bc2d5bb694.mp4",
+    "static/media/desktop-rebajas.webp": "/ecommerce/static/media/desktop-rebajas.f3d4dd6cd2feb7929d9d.webp",
+    "index.html": "/ecommerce/index.html",
+    "main.26708a96.js.map": "/ecommerce/static/js/main.26708a96.js.map",
+    "787.dcc73137.chunk.js.map": "/ecommerce/static/js/787.dcc73137.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.26708a96.js"
+  ]
+}
